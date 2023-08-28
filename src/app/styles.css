@@ -11,13 +11,24 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
+margin-bottom: 1rem;
 }
 .box{
-  padding: 4rem 4rem;
+  padding: 2rem 2rem;
+  border-radius: 2rem;
+  -webkit-box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
+  -moz-box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
+  box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
+  margin: 10rem auto;
 }
 .question{
   padding: 1.5rem ;
 }
 .input{
   padding: 1rem;
+}
+.ans-counter{
+  display: flex;
+  flex-direction: column;
+  color: white;
 }

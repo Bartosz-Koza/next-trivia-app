@@ -53,6 +53,11 @@ try {
 
 
   return (
+    <>
+    <div className='ans-counter'>
+      <h1>bad answers: {goodans}</h1>
+      <h1>good answers: {badans}</h1>
+    </div>
     <div className='main'>
       <div className='box '>
       <Button variant="contained" onClick={callAPI}>Next question</Button>
@@ -72,23 +77,24 @@ try {
                     <h1>siema</h1>
                     setBadans(badans + 1)
                   }
+                  {answer === message &&
+                    <h1>siema</h1>}
                 }   
 
 
                 return(
+                  
                   <div key={data}>
                   <h1>category: {category}</h1>
                   <h1>{question} ?</h1>
                   <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}}} placeholder='odpowiedź' className='input' onChange={handleChange} value={message} />
-                  <Button variant="contained" sx={{ p: "0.75rem"}} onClick={CheckAnswer}>Contained</Button>
-                  <h1>bad answers: {goodans}</h1>
-                  <h1>good answers: {badans}</h1>
-                  <h1>{message}</h1>
+                  <Button variant="contained" sx={{ p: "0.75rem", backgroundcolor: "yellow"}} onClick={CheckAnswer}>Contained</Button>
                   </div>
                 )
               })}
       </div>
     </div>
+    </>
   )
   
 }
