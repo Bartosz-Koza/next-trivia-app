@@ -3,8 +3,7 @@
 import './styles.css'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Button, TextField } from '@mui/material'
-
+import { Button, TextField, Box } from '@mui/material'
 
 
 export default function  Home() {
@@ -13,15 +12,14 @@ export default function  Home() {
 
   const [message, setMessage] = useState('');
   const [data, setData] = useState()
-  const [ans, setAns] = useState()
-  const [cat, setCat] = useState()
-  const [ques, setQues] = useState()
+  const [ans, setAns] = useState('')
   const [goodans, setGoodans] = useState(0)
   const [badans, setBadans] = useState(0)
   const [msg, setMsg] = useState("")
   
 
   const callAPI = async () => {
+    setAns('')
   const url = 'https://trivia-by-api-ninjas.p.rapidapi.com/v1/trivia';
 const options = {
 	method: 'GET',
@@ -68,17 +66,12 @@ try {
                 const CheckAnswer = () =>{
         
                   if(message != answer){
+                    setAns('false')
                     setGoodans(goodans + 1)
-                    return(
-                      <h1>dobrze !!!</h1>
-                      
-                    )
                   } if(message == answer){
-                    <h1>siema</h1>
+                    setAns('true')
                     setBadans(badans + 1)
                   }
-                  {answer === message &&
-                    <h1>siema</h1>}
                 }   
 
 
@@ -87,8 +80,16 @@ try {
                   <div key={data}>
                   <h1>category: {category}</h1>
                   <h1>{question} ?</h1>
-                  <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}}} placeholder='odpowiedź' className='input' onChange={handleChange} value={message} />
+                  { ans == "true" ?(
+                    <h1 className='ans'>Good answer 👍</h1>
+                  ) : ans == "false" ?(
+                      <h1 className='ans'>Bad answer 👎</h1>
+                  ) : (
+                    <Box sx={{textTransform: 'capitalize'}}>
+                    <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}, }} placeholder='odpowiedź' className='input' onChange={handleChange} value={message} />
                   <Button variant="contained" sx={{ p: "0.75rem", backgroundcolor: "yellow"}} onClick={CheckAnswer}>Contained</Button>
+                  </Box>)}
+                  
                   </div>
                 )
               })}

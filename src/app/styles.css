@@ -2,6 +2,7 @@ body{
   padding: 0;
   margin: 0;
   background-color: black;
+  overflow: hidden;
 }
 
 .main {
@@ -15,20 +16,63 @@ margin-bottom: 1rem;
 }
 .box{
   padding: 2rem 2rem;
-  border-radius: 2rem;
-  -webkit-box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
-  -moz-box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
-  box-shadow: 2px 7px 35px 6px rgba(217, 23, 23, 1);
   margin: 10rem auto;
+  border-radius: 2rem;
 }
 .question{
   padding: 1.5rem ;
 }
 .input{
   padding: 1rem;
+  text-transform: capitalize;
 }
 .ans-counter{
   display: flex;
   flex-direction: column;
-  color: white;
+  color:
+  white;
+  padding: 1rem;
 }
+
+.ans{
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+.box:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top left, #ff0000 20%, #0400ff 103% );
+  transform: translate3d(9px, 16px, 0) scale(1.02);
+  filter: blur(20px);
+  opacity: var(0.69);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+.box::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+      
