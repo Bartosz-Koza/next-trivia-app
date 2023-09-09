@@ -39,22 +39,33 @@ try {
 }
   };
   
-
+  // useEffect(() => {
+  //   localStorage.setItem("bad", JSON.stringify(badans));
+  //   let bad = Number.parseInt(localStorage.getItem("bad"))
+  //   setBadans(bad)
+  // }, [])
+  
 
   const handleChange = event => {
-    setMessage(event.target.value);
+    localStorage.setItem("bad", JSON.stringify(badans));
+    let bad = Number.parseInt(localStorage.getItem("bad"))
+    setBadans(bad)
+    setMessage(event.target.value.toUpperCase());
     console.log('value is:', event.target.value, 'msg:', msg);
   };
 
   
-  
+//   useEffect(
+//     () => window.localStorage.setItem(goodans, goodans),
+//     [goodans]
+// );
 
 
   return (
     <>
     <div className='ans-counter'>
-      <h1>bad answers: {goodans}</h1>
-      <h1>good answers: {badans}</h1>
+      <h1>Bad answers: {goodans}</h1>
+      <h1>Good answers: {badans}</h1>
     </div>
     <div className='main'>
       <div className='box '>
@@ -65,10 +76,10 @@ try {
                 
                 const CheckAnswer = () =>{
         
-                  if(message != answer){
+                  if(message != answer.toUpperCase()){
                     setAns('false')
                     setGoodans(goodans + 1)
-                  } if(message == answer){
+                  } if(message == answer.toUpperCase()){
                     setAns('true')
                     setBadans(badans + 1)
                   }
@@ -78,7 +89,7 @@ try {
                 return(
                   
                   <div key={data}>
-                  <h1>category: {category}</h1>
+                  <h1>Category: {category}</h1>
                   <h1>{question} ?</h1>
                   { ans == "true" ?(
                     <h1 className='ans'>Good answer 👍</h1>
@@ -86,7 +97,7 @@ try {
                       <h1 className='ans'>Bad answer 👎</h1>
                   ) : (
                     <Box sx={{textTransform: 'capitalize'}}>
-                    <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}, }} placeholder='odpowiedź' className='input' onChange={handleChange} value={message} />
+                    <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}, }} placeholder='Answer' className='input' onChange={handleChange} value={message} />
                   <Button variant="contained" sx={{ p: "0.75rem", backgroundcolor: "yellow"}} onClick={CheckAnswer}>Contained</Button>
                   </Box>)}
                   
