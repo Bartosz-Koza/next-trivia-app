@@ -5,13 +5,12 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Button, TextField, Box } from '@mui/material'
 
-
-export default function  Home() {
+export default function  Home({  }) {
 
   
 
   const [message, setMessage] = useState('');
-  const [data, setData] = useState()
+  const [data, setData] = useState<any[]>([]) 
   const [ans, setAns] = useState('')
   const [goodans, setGoodans] = useState(0)
   const [badans, setBadans] = useState(0)
@@ -39,26 +38,11 @@ try {
 }
   };
   
-  // useEffect(() => {
-  //   localStorage.setItem("bad", JSON.stringify(badans));
-  //   let bad = Number.parseInt(localStorage.getItem("bad"))
-  //   setBadans(bad)
-  // }, [])
-  
 
-  const handleChange = event => {
-    localStorage.setItem("bad", JSON.stringify(badans));
-    let bad = Number.parseInt(localStorage.getItem("bad"))
-    setBadans(bad)
+  const handleChange = (event) => {
     setMessage(event.target.value.toUpperCase());
     console.log('value is:', event.target.value, 'msg:', msg);
   };
-
-  
-//   useEffect(
-//     () => window.localStorage.setItem(goodans, goodans),
-//     [goodans]
-// );
 
 
   return (
@@ -71,15 +55,15 @@ try {
       <div className='box '>
       <Button variant="contained" onClick={callAPI}>Next question</Button>
         {data &&  
-              data.map(({ question, category, answer }) => {  
+              data.map(( data ) => {  
                 
                 
                 const CheckAnswer = () =>{
         
-                  if(message != answer.toUpperCase()){
+                  if(message != data.answer.toUpperCase()){
                     setAns('false')
                     setGoodans(goodans + 1)
-                  } if(message == answer.toUpperCase()){
+                  } if(message == data.answer.toUpperCase()){
                     setAns('true')
                     setBadans(badans + 1)
                   }
@@ -89,12 +73,17 @@ try {
                 return(
                   
                   <div key={data}>
-                  <h1>Category: {category}</h1>
-                  <h1>{question} ?</h1>
+                  <h1>Category: {data.category}</h1>
+                  <h1>{data.question} ?</h1>
                   { ans == "true" ?(
+                    <div>
                     <h1 className='ans'>Good answer 👍</h1>
+                    </div>
                   ) : ans == "false" ?(
+                      <div>
                       <h1 className='ans'>Bad answer 👎</h1>
+                      <h1>Answer: {data.answer}</h1>
+                      </div>
                   ) : (
                     <Box sx={{textTransform: 'capitalize'}}>
                     <TextField variant="standard" sx={{ p: "1rem", input: {color: "white", backgroundcolor:"white"}, }} placeholder='Answer' className='input' onChange={handleChange} value={message} />
