@@ -47,7 +47,7 @@ export default function Home({}) {
       </div>
       <div className="main">
         <div className="box ">
-          <Button variant="contained" onClick={callAPI}>
+          <Button variant="contained" sx={{background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )"}} onClick={callAPI}>
             Next question
           </Button>
           {data &&
@@ -91,10 +91,10 @@ export default function Home({}) {
                       />
                       <Button
                         variant="contained"
-                        sx={{ p: "0.75rem", backgroundcolor: "yellow" }}
+                        sx={{ p: "0.75rem", background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )"}}
                         onClick={CheckAnswer}
                       >
-                        Contained
+                        SUBMIT
                       </Button>
                     </Box>
                   )}
