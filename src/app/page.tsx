@@ -5,34 +5,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Button, TextField, Box } from "@mui/material";
 import apiCall from "./api";
-export default function Home({data}) {
+export default function Home({ data }: any) {
+
   const [message, setMessage] = useState("");
   const [ans, setAns] = useState("");
   const [goodans, setGoodans] = useState(0);
   const [badans, setBadans] = useState(0);
   const [msg, setMsg] = useState("");
-  // const callAPI = async () => {
-  //   setAns("");
-  //   const url = "https://trivia-by-api-ninjas.p.rapidapi.com/v1/trivia";
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "X-RapidAPI-Key": "ebf8fe15a0msh9347bf8a12ae3a9p114e9ajsn431be86ffa31",
-  //       "X-RapidAPI-Host": "trivia-by-api-ninjas.p.rapidapi.com",
-  //     },
-  //   };
 
-  //   try {
-  //     const response = await fetch(url, options);
-  //     const result = await response.json();
-  //     console.log(result);
-  //     setData(result);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: string; }; }) => {
     setMessage(event.target.value.toUpperCase());
     console.log("value is:", event.target.value, "msg:", msg);
   };
@@ -45,7 +27,7 @@ export default function Home({data}) {
       </div>
       <div className="main">
         <div className="box ">
-          <Button variant="contained" sx={{background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )"}} onClick={apiCall}>
+          <Button variant="contained" sx={{ background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )" }} onClick={apiCall}>
             Next question
           </Button>
           {data &&
@@ -89,7 +71,7 @@ export default function Home({data}) {
                       />
                       <Button
                         variant="contained"
-                        sx={{ p: "0.75rem", background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )"}}
+                        sx={{ p: "0.75rem", background: "linear-gradient(to top left, #ff0000 20%, #0400ff 103% )" }}
                         onClick={CheckAnswer}
                       >
                         SUBMIT

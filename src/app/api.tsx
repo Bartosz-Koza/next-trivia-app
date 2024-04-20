@@ -1,4 +1,5 @@
 'use server'
+
 import Home from "./page";
 const callAPI = async () => {
     const url = "https://trivia-by-api-ninjas.p.rapidapi.com/v1/trivia";
